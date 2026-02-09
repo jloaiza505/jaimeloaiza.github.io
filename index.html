@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jaime Loaiza | Biomechanics & Robotics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        :root {
+            --accent: #0f4c81;
+            --text: #111;
+            --muted: #666;
+            --bg: #ffffff;
+            --card: #f7f7f7;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        header {
+            padding: 80px 20px 40px 20px;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 60px;
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 4px;
+        }
+
+        p {
+            margin: 8px 0;
+        }
+
+        .subtitle {
+            color: var(--muted);
+            font-size: 1.1rem;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .projects {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.15s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+        }
+
+        .card h3 {
+            margin-top: 0;
+        }
+
+        .tags {
+            font-size: 0.85rem;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        footer {
+            margin-top: 80px;
+            padding: 40px 20px;
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--muted);
+        }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        @media (min-width: 700px) {
+            .projects {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Jaime Loaiza</h1>
+    <p class="subtitle">
+        Biomechanics & Robotics Engineer | Control Systems | Simulation | ROS2
+    </p>
+    <p>
+        Engineer focused on biomechanical modeling, robotic systems, and control-driven design.
+        Experience in simulation pipelines, ROS2 development, CAD design, and industrial engineering tools.
+    </p>
+</header>
+
+<div class="container">
+
+    <h2>Selected Projects</h2>
+
+    <div class="projects">
+
+        <div class="card">
+            <h3>Adaptive Robotic Gripper</h3>
+            <p>
+                Design and implementation of an adaptive gripper for complex geometry manipulation.
+                Focused on mechanical compliance and control strategy optimization.
+            </p>
+            <div class="tags">
+                CAD | Control Systems | Robotics | Mechanical Design
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Biomechanics Simulation Pipeline</h3>
+            <p>
+                Development of a musculoskeletal simulation pipeline using OpenSim.
+                Analysis of muscle excitation under dynamically consistent conditions.
+            </p>
+            <div class="tags">
+                OpenSim | Biomechanics | Modeling | Python
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>ROS2 Robotic Control System</h3>
+            <p>
+                Modular ROS2-based architecture for robotic system simulation and control.
+                Includes node design, topic management, and trajectory execution.
+            </p>
+            <div class="tags">
+                ROS2 | C++ | Python | Simulation
+            </div>
+        </div>
+
+        <div class="card">
+            <h3>Industrial Data Analysis Tools</h3>
+            <p>
+                Creation of internal tools for sensor data visualization and troubleshooting.
+                Focused on improving technical diagnostics and engineering workflows.
+            </p>
+            <div class="tags">
+                Python | Data Processing | Industrial Engineering
+            </div>
+        </div>
+
+    </div>
+
+    <h2>GitHub</h2>
+    <p>
+        View code repositories and technical work:
+        <a href="https://github.com/" target="_blank">
+            github.com/jloaiza505
+        </a>
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+        Email: your.email@example.com
+    </p>
+
+</div>
+
+<footer>
+    © 2026 Jaime Loaiza
+</footer>
+
+</body>
+</html>
