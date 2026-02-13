@@ -17,14 +17,14 @@
         <a href="index.html" class="nav-logo">JL</a>
         <div class="nav-links">
             <a href="#about">About</a>
-            <a href="#projects">Projects</a>
+            <a href="projects.html">Projects</a>
             <a href="#build">Prototyping</a>
             <a href="#stack">Stack</a>
             <a href="#cv">CV</a>
             <a href="#contact">Contact</a>
         </div>
     </nav>
-    <header>
+    <header class="main-header">
         <div class="reveal" data-delay="1">
             <h1>Jaime Loaiza</h1>
             <p class="subtitle">Biomechanics &amp; Robotics Engineer</p>
@@ -34,8 +34,7 @@
                 <span class="chip">ROS2</span>
             </div>
             <div class="hero-card">
-                Focused on biomechanics-driven robotics with an emphasis on modeling, control, and
-                applied engineering systems.
+                Robotics focused on biomechanical modeling and control for assistive and wearable systems.
             </div>
         </div>
     </header>
@@ -45,13 +44,27 @@
         <section id="about" class="reveal" data-delay="2">
             <h2>About</h2>
             <div class="about-grid">
-                <p class="section-intro">
-                    I work at the intersection of biomechanics and robotic systems, building models that
-                    connect musculoskeletal dynamics with real-world control implementations. My current
-                    direction is applied R&amp;D with a research-first mindset: validating simulations,
-                    designing control strategies, and translating findings into hardware-ready systems.
-                </p>
-                <div class="about-photo">Add photo</div>
+                <div>
+                    <p class="section-intro">
+                        I am a robotics-focused engineer with experience in system integration, 
+                        mechanical design, and ROS2-based development in C++/Python, contributing 
+                        to industrial automation projects from design to deployment.
+                    </p>
+
+                    <p class="section-intro">
+                        I have explored biomechanics and musculoskeletal modeling through academic 
+                        and independent projects, with a growing interest in exoskeletons and 
+                        prosthetics.
+                    </p>
+
+                    <p class="section-intro">
+                        My focus is on developing robotic systems for human-centered assistive 
+                        technologies, particularly wearable robotics.
+                    </p>
+                </div>
+                <div class="about-photo">
+                    <img src="assets/images/shared/profile.jpg" alt="Jaime Loaiza">
+                </div>
             </div>
         </section>
 
@@ -61,6 +74,7 @@
                 Core work across biomechanics simulation, robotics control, and applied engineering tools.
                 Replace the placeholders with your real projects and links.
             </p>
+            <p><a href="projects.html">View all projects</a></p>
 
             <h3>Biomechanics &amp; Simulation</h3>
             <div class="projects" data-category="Biomechanics &amp; Simulation"></div>
@@ -102,61 +116,30 @@
 
         <section id="stack" class="reveal" data-delay="4">
             <h2>Technical Stack</h2>
-            <div class="stack-grid">
-                <div class="stack-card">
-                    <h4>Control &amp; Modeling</h4>
-                    <ul class="stack-list">
-                        <li>MATLAB / Simulink</li>
-                        <li>OpenSim</li>
-                        <li>Numerical optimization</li>
-                    </ul>
-                </div>
-                <div class="stack-card">
-                    <h4>Robotics</h4>
-                    <ul class="stack-list">
-                        <li>ROS2</li>
-                        <li>C++</li>
-                        <li>Python</li>
-                    </ul>
-                </div>
-                <div class="stack-card">
-                    <h4>Mechanical</h4>
-                    <ul class="stack-list">
-                        <li>CAD tools</li>
-                        <li>Design for manufacturing</li>
-                    </ul>
-                </div>
-            </div>
+            <div class="stack-grid" id="stack-grid"></div>
         </section>
 
         <section id="cv" class="reveal" data-delay="5">
             <h2>CV</h2>
             <p class="section-intro">Download the one-page CV for a full snapshot of roles and education.</p>
             <div class="link-row">
-                <a class="cta" href="assets/JaimeLoaiza_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
-                <a class="cta secondary" href="#" aria-disabled="true">One-line summary placeholder</a>
+                <a class="cta" id="cv-link" href="assets/JaimeLoaiza_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
             </div>
         </section>
 
         <section id="github" class="reveal" data-delay="5">
             <h2>GitHub</h2>
             <p class="section-intro">Direct link and pinned repositories.</p>
-            <div class="link-row">
-                <a class="cta secondary" href="https://github.com/jloaiza505" target="_blank" rel="noopener">github.com/jloaiza505</a>
-                <a class="cta secondary" href="https://github.com/" target="_blank" rel="noopener">Pinned repo 1</a>
-                <a class="cta secondary" href="https://github.com/" target="_blank" rel="noopener">Pinned repo 2</a>
-                <a class="cta secondary" href="https://github.com/" target="_blank" rel="noopener">Pinned repo 3</a>
-            </div>
+            <div class="link-row" id="github-links"></div>
         </section>
 
         <section id="contact" class="reveal" data-delay="5">
             <h2>Contact</h2>
-            <p class="section-intro">Email, LinkedIn, and location.</p>
+            <p class="section-intro">Emails & LinkedIn</p>
             <div class="link-row">
                 <a class="cta secondary" href="mailto:jloaiza505@gmail.com">jloaiza505@gmail.com</a>
                 <a class="cta secondary" href="mailto:jaime.loaiza@tum.de">jaime.loaiza@tum.de</a>
                 <a class="cta secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-                <span class="chip">Munich, Germany (April 2026)</span>
             </div>
         </section>
 
@@ -166,23 +149,18 @@
         &copy; 2026 Jaime Loaiza
     </footer>
     <script src="data/projects.js"></script>
+    <script src="data/site-config.js"></script>
+    <script src="data/stack.js"></script>
     <script>
-        const featuredSet = new Set(featured);
-        const categoryBuckets = new Map();
-
-        projects.forEach((project) => {
-            if (!featuredSet.has(project.id)) {
-                return;
-            }
-            if (!categoryBuckets.has(project.category)) {
-                categoryBuckets.set(project.category, []);
-            }
-            categoryBuckets.get(project.category).push(project);
-        });
+        const byId = new Map(projects.map((project) => [project.id, project]));
 
         document.querySelectorAll(".projects[data-category]").forEach((container) => {
             const category = container.getAttribute("data-category");
-            const items = categoryBuckets.get(category) || [];
+            const featuredList = (siteConfig.featuredByCategory && siteConfig.featuredByCategory[category]) || [];
+            const items = featuredList
+                .map((id) => byId.get(id))
+                .filter((project) => project && project.ready_to_publish !== false);
+
             if (items.length === 0) {
                 container.innerHTML = "<p class=\"section-intro\">Featured projects coming soon.</p>";
                 return;
@@ -191,7 +169,7 @@
             container.innerHTML = items.map((project) => {
                 const imageBlock = project.image
                     ? `<div class=\"card-media\"><img src=\"${project.image}\" alt=\"${project.title}\"></div>`
-                    : `<div class=\"card-media\">Add image</div>`;
+                    : `<div class=\"card-media\">assets/images/${project.id}/card.jpg</div>`;
 
                 const tokens = project.stack.map((item) => `<span class=\"token\">${item}</span>`).join("");
 
@@ -211,9 +189,49 @@
                 `;
             }).join("");
         });
+
+        const cvLink = document.getElementById("cv-link");
+        if (siteConfig.cvFile && cvLink) {
+            cvLink.setAttribute("href", siteConfig.cvFile);
+        }
+
+        const githubLinks = document.getElementById("github-links");
+        if (githubLinks) {
+            const profile = siteConfig.github && siteConfig.github.profile;
+            const repos = (siteConfig.github && siteConfig.github.repos) || [];
+            const links = [];
+            if (profile) {
+                links.push(`<a class="cta secondary" href="${profile}" target="_blank" rel="noopener">${profile.replace("https://", "")}</a>`);
+            }
+            repos.forEach((repo) => {
+                const label = repo.label || "GITHUB REPO";
+                const url = repo.url || repo;
+                links.push(`<a class="cta secondary" href="${url}" target="_blank" rel="noopener">${label}</a>`);
+            });
+            githubLinks.innerHTML = links.join("");
+        }
+
+        const stackGrid = document.getElementById("stack-grid");
+        if (stackGrid) {
+            const sections = (window.stackData && window.stackData.sections) || [];
+            if (sections.length === 0) {
+                stackGrid.innerHTML = "<p class=\"section-intro\">Stack coming soon.</p>";
+            } else {
+                stackGrid.innerHTML = sections.map((section) => {
+                    const skills = (section.skills || [])
+                        .map((skill) => `<li>${skill}</li>`)
+                        .join("");
+                    return `
+                        <div class="stack-card">
+                            <h4>${section.title || "Section"}</h4>
+                            <ul class="stack-list">${skills}</ul>
+                        </div>
+                    `;
+                }).join("");
+            }
+        }
     </script>
 </div>
 
 </body>
 </html>
-

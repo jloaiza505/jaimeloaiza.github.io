@@ -1,0 +1,370 @@
+ 
+REPU 2022 
+Project 03 – KTH 
+                              1 
+Reduction of muscle activation in the right leg during gait using a passive 
+exoskeleton  
+Jaime A. Loaiza, Adriana R. Laurent 
+Abstract – Simulations permit adding external elements, 
+such as assistive devices, and observing their behavior. 
+OpenSim is a platform that can model and simulate 
+musculoskeletal systems.  In this project, we will explore 
+how parameters of an assistive device based on an elastic 
+element may influence muscle activation during walking; 
+similar to the presence of Collins et al. (2015) and Sawicki 
+et al. (2016) research. We performed all the analysis using 
+experimental data form a RRA optimized model in 
+OpenSim to determine optimal stiffness and optimal resting 
+length as well as to perform a geometrical analysis of the 
+proposed assistive device. We explored the effect of the 
+assistive device and its parameters on four different muscle 
+groups (plantar flexors, dorsiflexors, knee flexors and knee 
+extensors) and found optimal stiffness and rest length for 
+the proposed device’s elastic band. 
+Keywords - Ankle, exoskeleton, stiffness, resting length, 
+geometry. 
+I. 
+INTRODUCTION 
+During human evolution, the musculoskeletal system has 
+always sought to be efficient during walking, in other words, 
+the musculoskeletal system uses the least amount of metabolic 
+energy to carry out movements, however, any change generates 
+gait cycle pathologies. Currently, passive exoskeletons seek to 
+solve the pathologies of the gait cycle [1,2]. 
+In this project, we will study a similar device as present by 
+Collins[1] and Sawicki [2] made from an extension spring 
+placed around the ankle joint. While different models have been 
+proposed throughout the field, we seek to present our own take 
+on an elastic band exoskeleton for the ankle joint. 
+II. 
+METHODS 
+We performed all analysis on the right leg of an OpenSim model 
+to which RRA had already been applied. Through the use of 
+static optimization, we investigated how an ideal passive 
+exoskeleton affected the muscle distribution problem. Like this, 
+we started by analyzing how the stiffness and resting length of 
+the extension spring affected the activation of muscle groups 
+responsible for the movement of the ankle joint during gait. It 
+is important to mention that the initial geometric model of the 
+exoskeleton is an ideal representation, meaning that it follows 
+the same geometric path as the right soleus. For this reason, a 
+second geometric study was performed in which a more realistic 
+exoskeletal model was developed (Figure 1). Through the 
+modification of the elastic band’s (extension spring) geometry 
+path, we were able to represent a realistic external exoskeleton, 
+allowing us to determine the optimal elastic band stiffness 
+alongside its ideal resting length in order to minimize muscle 
+activation during gait.  
+a. 
+OPTIMAL STIFFNESS 
+To determine the elastic band’s optimal stiffness, we performed 
+static optimization on the provided model using 9 different 
+stiffness values spanning 2 orders of magnitude. Stiffness 
+values selected were [10, 25, 50, 75, 100, 250, 370, 500, 1000] 
+kN/m in order to get a broader scope into how large and small 
+stiffness values affected muscle activation. Values beyond 
+1000kNm were excluded as they resulted in maximum muscle 
+activation for the dorsiflexors.  
+Muscle activation of each of the muscle groups studied were 
+then plotted for the varying elastic band stiffnesses and an 
+integral of overall muscle activation was calculated for each 
+muscle group to determine total muscle activation for varying 
+elastic band stiffnesses.  
+Polynomial regression of grade 2 was then performed on the 
+overall activation data to determine the minimum muscle 
+activation alongside its elastic band stiffness. 
+Finally, static optimization was ran one last time using the 
+optimal stiffness value obtained during quadratic regression of 
+total muscle activation. This was then plotted alongside the 9 
+initial values for validation purposes. 
+b. 
+OPTIMAL RESTING LENGTH 
+Once the optimal stiffness was obtained, we used this value to 
+determine the optimal resting length of the elastic band. For this 
+analysis we selected resting lengths close to the elastic bands’ 
+original size. Values selected were [285, 290, 295, 300] mm. 
+Static optimization was performed for each one of these values 
+and overall muscle activity was calculated in the same way as 
+done for the optimal stiffness determination. A quadratic 
+regression model was applied to the overall muscle activation 
+and optimal resting length was determined. 
+Once again, static optimization was ran using the optimal 
+resting length and the results were plotted alongside the original 
+4 selected values. 
+c. 
+GEOMETRY ANALYSIS 
+In order for this device to be attachable to the human leg, a non-
+intrusive geometric model had to be developed in order to place 
+the elastic band parallel to the calf. In this way, the geometric 
+path of the elastic band was modified within OpenSim to 
+resemble Figure 1. Once a defined geometry was established, 
+static optimization was used to determine the optimal elastic 
+
+ 
+REPU 2022 
+Project 03 – KTH 
+                              2 
+band stiffness and resting length for this modified geometric 
+path. 
+ 
+Figure 1 | Proposed model of the passive exoskeleton using an 
+elastic band. The exoskeleton would attach to any arbitrary sneaker 
+or shoe through its bootstrap, making it only necessary for the 
+subject to attach the device below the knee, resulting in minimal 
+discomfort of the foot. 
+ 
+III. 
+RESULTS 
+Results were obtained using OpenSim’s built-in Static 
+Optimization tool, data for all simulations was exported and 
+plotted using the assistance of MATLAB. 
+a. 
+OPTIMAL STIFFNESS 
+There is a clear trend when it comes to elastic band stiffness and 
+its force throughout gait cycle. Energy stored in the elastic band 
+during loading response and initial single leg stance is 
+converted to force and applied during terminal stance to propel 
+the body forward. Like this, the stiffer the spring, the more 
+energy it can store and therefore the higher force it can exert 
+during terminal stance (Figure 1). 
+In this way, the force applied during terminal stance by the 
+elastic band helps compensate for the force required to lunge 
+forward into the initial contact of the opposing leg, therefore 
+reducing the activation of the muscles that were originally 
+responsible for this task (plantar flexors). 
+When observing the activation of the plantar flexors (Figure 3 
+– PF), the effect of the elastic band is favorable, decreasing both 
+the overall activation and the initial activation time. However, 
+after closer inspection it can also be seen that peak activation 
+varies slightly, probably due to the resting length of the elastic 
+band being reached and therefore requiring the soleus to take 
+over. 
+Figure 2 | Force exerted by elastic band over gait cycle for 
+different spring stiffnesses. Peak force was obtained with a 
+stiffness of 1000kNm without over-activation of the dorsiflexors. 
+There is a clear trend, as elastic band stiffness increases, the energy 
+stored increases and therefore it can generate greater force. 
+ 
+Figure 3 | Muscle activation over gait cycle of plantar flexors 
+(PF) and dorsiflexors (DF) assisted by an elastic band 
+exoskeleton for different stiffnesses. A clear decrease in plantar 
+flexor activity is seen with an increase in elastic band stiffness. The 
+opposite can be said about the dorsiflexors, where muscle activation 
+increases with elastic band stiffness. 
+ 
+Furthermore, while the increase in the stiffness of the elastic 
+band shows a decrease in the overall plantar flexor activation, it 
+is not possible to completely replace the force provided by the 
+plantar flexors, at least at an elastic band rest length of 295mm.  
+Nonetheless, the effect of the elastic band affects not only the 
+muscles it replaces but also the muscles it opposes. While the 
+effects of the elastic band can be favorable for the plantar 
+flexors (Figure 3 – PF), an opposite effect occurs in the 
+
+ 
+REPU 2022 
+Project 03 – KTH 
+                              3 
+dorsiflexors (Figure 3 – DF) whose activation increases with the 
+increase of the stiffness of the elastic band. Moreover, when 
+comparing Figures 2 and 3 – DF, a clear resemblance can be 
+spotted which indicates that the dorsiflexors are compensating 
+for the over-stiffness of the elastic band and therefore, a higher 
+activation is needed to stretch the elastic band.  
+Figure 4 | Muscle activation over gait cycle of knee flexors (KF) 
+and knee extensors (KE) assisted by an elastic band exoskeleton 
+for different stiffnesses. Muscle activity seems consistent for knee 
+flexors (aside from extreme values). Knee extensors’ muscle 
+activity decreases with increasing elastic band stiffness. 
+ 
+The two other groups observed during the analysis were the 
+knee flexors (KF) and knee extensors (KE) (Figure 4). Whilst 
+the effect of the elastic band stiffness was minimal on the knee 
+flexors group, a clear impact can be seen on the knee extensor, 
+where muscle activation dropped considerably during terminal 
+stance for the higher stiffness values. 
+When observing Figure 5, overall activation for the plantar 
+flexors, dorsiflexors, knee flexors and knee extensor are plotted 
+individually. The black tick line represents the sum of the 
+activation of all muscle groups, resulting in a curve that 
+represents total muscle activation during gait. The black tick 
+line is the product of performing quadratic regression on the 
+data points plotted (black crosses). In this way, after performing 
+quadratic regression for the stiffnesses simulated, an optimal 
+value of stiffness appears, for which total muscle activation is 
+minimal (Figure 5). The value of this stiffness is exactly 
+371,212.12Nm, however it has been rounded off to 370kNm for 
+simulation purposes. 
+ 
+Figure 5 | Overall muscle activation of plantar flexors, 
+dorsiflexors, knee flexors and knee extensors group muscles for 
+varying elastic band stiffness. Plantar flexors’ (red) overall 
+activation decreases with the increase in elastic band stiffness, the 
+same can be said for knee flexors (green) and knee extensors (cyan) 
+but to a lower degree. Dorsiflexors’ (blue) overall activation 
+increases with elastic band stiffness, due to increased muscle 
+demand required to stretch the elastic band. Overall activation 
+(black) of all muscle groups shows to have a point of minimum 
+activation with a stiffness of about 370kNm. 
+ 
+b. 
+OPTIMAL RESTING LENGTH 
+Using the optimal stiffness of 370kNm, optimal resting length 
+of the elastic band was determined.  
+Muscle activation for plantar flexors (PF), dorsiflexors (DF), 
+knee flexors (KF) and knee extensors (KE) were plotted during 
+gait cycle for varying elastic band rest length (Figure 6). Special 
+attention must be brought towards the trade-off in muscle 
+activation between the plantar flexors and the dorsiflexors. As 
+elastic band rest length increases, plantar flexor activation 
+increases and dorsiflexor activation decreases. In this way, for 
+short elastic band rest lengths (285mm) we can see minimal 
+activation of the plantar flexors, which suggest an even shorter 
+elastic band rest length could result in the elimination of plantar 
+flexor activation. However, a shorter elastic band rest length 
+would mean higher activation from the dorsiflexors (which are 
+already at a 0.8 peak at 285mm) which could easily reach 
+excessive activation for this muscle group.  
+
+ 
+REPU 2022 
+Project 03 – KTH 
+                              4 
+Figure 6 | Muscle activation over gait cycle of plantar flexors 
+(PF), dorsiflexors (DF), knee flexors (KF) and knee extensors 
+(KE) assisted by an elastic band exoskeleton for different elastic 
+band rest lengths. A clear trade-off can be seen between the plantar 
+flexors and the dorsiflexors when the elastic band rest length is 
+altered. A more significant effect can be seen, this time in both the 
+knee flexors and extensors, where muscle activation decreases with 
+a decrease in elastic band rest length. 
+ 
+Overall muscle activation was plotted as seen in figure 7. Note 
+that the trend for plantar flexors and dorsiflexors are reversed 
+when compared to Figure 5. That is, when the independent 
+variable increases, plantar flexor activation increases and 
+dorsiflexor activation decreases. 
+Figure 7 | Overall muscle activation for different elastic band 
+resting lengths. Muscle activation proves to show minimum 
+activation at an elastic band rest length of about 295mm.  
+ 
+By varying the elastic band rest length, we were able to 
+calculate the overall activation for each muscle group, resulting 
+in the total muscle activation for different elastic band rest 
+lengths. Figure 7 shows the total muscle activation (black tick 
+line) where a minimal point at an elastic band rest length of 
+296.96mm can be seen.  
+c. 
+GEOMETRY ANALYSIS 
+For the geometry analysis of a realistic external exoskeleton, 
+modifications were done on the geometry path of the elastic 
+band as seen on Figure 8. 
+Figure 8 | Elastic band geometry simulated in OpenSim. The 
+elastic band was modeled in a more realistic way, offsetting it from 
+the calf in order to resemble the exoskeleton proposed in Figure 1.  
+ 
+
+ 
+REPU 2022 
+Project 03 – KTH 
+                              5 
+The modification of the geometry path altered both the optimal 
+stiffness of the elastic band as well as its optimal resting length.  
+Figure 9 | Overall muscle activation of plantar flexors, 
+dorsiflexors, knee flexors and knee extensors group muscles for 
+varying elastic band stiffness. An optimal point that minimizes 
+muscle activation can be seen at an elastic band stiffens of 
+165,656.57Nm 
+ 
+Figure 10 | Overall muscle activation of plantar flexors, 
+dorsiflexors, knee flexors and knee extensors group muscles for 
+varying elastic band rest length. An optimal point that minimizes 
+muscle activity can be seen at an elastic band rest length of about 
+331.6mm. 
+ 
+For this new geometry, optimal elastic band stiffness shifted to 
+the left, resulting in an optimal stiffness of about 165kNm 
+(Figure 9), while optimal elastic band rest length shifted slightly 
+to the right to an optimal value of about 332mm (Figure 10). 
+IV. DISCUSSION & CONCLUSION 
+We have analyzed how the implementation of an ideal and a 
+realistic passive exoskeletal model affects muscle activation 
+during gait cycle. It is evident that the addition of an elastic band 
+(extension spring) helps reduce the activation of muscle groups 
+such as the plantar flexors, particularly during terminal stance. 
+However, an opposite reaction can be seen on antagonist muscle 
+groups such as the dorsiflexors. In this way, the development of 
+an elastic band exoskeleton must be assessed with extreme care 
+as slight changes in parameters such as elastic band stiffness 
+and elastic band rest length show considerable effects in the 
+overall muscle activation during gait. 
+These effects can be seen beyond the plantar flexor and 
+dorsiflexor muscle groups. Proximal muscle groups such as the 
+knee flexors and the knee extensors are also vulnerable to 
+changes when an ankle joint exoskeleton is introduced. 
+Moreover, we have seen the effect of varying elastic band 
+stiffness and elastic band rest length on the four muscle groups 
+previously mentioned showing that for an increase in elastic 
+band stiffness: plantar flexors, knee flexors and knee extensors 
+activation decreases and dorsiflexor activation increases, and 
+for an increase in elastic band rest length: plantar flexors, knee 
+flexors and knee extensors activation increases and dorsiflexor 
+activation decreases. In addition, further assessment of the 
+proximal muscle groups show that knee extensors are more 
+prone to changes in activation when compared to knee flexors. 
+In this analysis, a methodology for calibrating an ankle join 
+exoskeleton was presented, showing how optimal stiffness and 
+elastic band rest length can be determined to minimize overall 
+muscle activation during gait. Regarding optimal stiffness, 
+there appears to be a threshold beyond which the impact of the 
+exoskeleton becomes significant. In the case of the ideal model, 
+effects became more noticeable when going beyond the 
+250kNm stiffens value. This is probably because a minimum 
+stiffness value is required for the elastic band to generate any 
+meaningful force that reduces other muscle groups’ activation. 
+On the other hand, elastic band rest length has a more 
+significant effect on the activation of the different muscle 
+groups. It is important to point out that when varying elastic 
+band rest length, there exists a value beyond which the 
+exoskeleton becomes trivial. This is because the rest length of 
+the elastic band is long enough to not suffer any elongation 
+during gait. Nonetheless, one must be equally careful when 
+shortening the elastic bands’ rest length as a minimal value can 
+easily over-activate the dorsiflexors, resulting in an exoskeleton 
+that does more harm than good. 
+Moreover, this analysis proposed the development of a realistic 
+exoskeleton. Like this, an external noninvasive exoskeleton was 
+presented, and its optimal elastic band stiffness, and rest length 
+were determined. While the external exoskeleton held some 
+resemblance to the ideal model, its location decreased the 
+optimal stiffness value. This is probably due to its further 
+
+ 
+REPU 2022 
+Project 03 – KTH 
+                              6 
+distance from the ankle joint, allowing it to generate greater 
+torque without the need of increased stiffness. Regarding the 
+elastic band rest length, this was longer than the ideal model due 
+to its new geometry and location, linking with the body just 
+above and below the top and bottom links of the soleus. 
+Finally, the long-term effect of an extension spring ankle joint 
+exoskeleton is a topic that requires further research. Using an 
+exoskeleton for prolonged periods could result in an atrophy or 
+deformation of the muscle groups. Since the exoskeleton 
+compensates for some of the force required for terminal stance, 
+muscles would become under activated, resulting in less 
+exercise than usual, and therefore worsening their performance 
+in the long term. However, this can be counteracted by 
+performing muscle activity for extended periods of time 
+(compared to exercise times without the exoskeleton), 
+nonetheless, this trade-off is subject of its own analysis. 
+V. REFERENCES 
+1. Collins S, Wiggin M & Sawicki G. Reducing the energy cost of human 
+walking using an unpowered exoskeleton, Nature. 2015; 522 212-5. 
+2. Sawicki GS & Khan NS. A simple model to estimate plantar flexor muscle–
+tendon mechanics and energetics during walking with elastic ankle 
+exoskeletons, IEEE Transactions on Biomedical Engineering. 2015; 63(5): 
+914-923. 
+3. Burnfield M. Gait analysis: normal and pathological function, Journal of 
+Sports Science and Medicine. 2010; 9(2):353. 
