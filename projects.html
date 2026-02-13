@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Projects | Jaime Loaiza</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="page">
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">JL</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="index.html#contact">Contact</a>
+        </div>
+    </nav>
+
+    <header class="projects-header">
+        <div class="reveal" data-delay="1">
+            <h1>All Projects</h1>
+            <p class="subtitle">Full archive of biomechanics, robotics, and applied engineering work.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="reveal section-tight" data-delay="2">
+            <h2>Biomechanics &amp; Simulation</h2>
+            <div class="projects" data-category="Biomechanics &amp; Simulation"></div>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>Robotics &amp; Control</h2>
+            <div class="projects" data-category="Robotics &amp; Control"></div>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Applied Engineering / Industrial Tools</h2>
+            <div class="projects" data-category="Applied Engineering / Industrial Tools"></div>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2026 Jaime Loaiza
+    </footer>
+</div>
+
+<script src="data/projects.js"></script>
+<script>
+    const byCategory = new Map();
+
+    projects.forEach((project) => {
+        if (!byCategory.has(project.category)) {
+            byCategory.set(project.category, []);
+        }
+        byCategory.get(project.category).push(project);
+    });
+
+    document.querySelectorAll(".projects[data-category]").forEach((container) => {
+        const category = container.getAttribute("data-category");
+        const items = (byCategory.get(category) || []).filter((project) => project.ready_to_publish !== false);
+
+        if (items.length === 0) {
+            container.innerHTML = "<p class=\"section-intro\">Projects coming soon.</p>";
+            return;
+        }
+
+        container.innerHTML = items.map((project) => {
+            const imageBlock = project.image
+                ? `<div class=\"card-media\"><img src=\"${project.image}\" alt=\"${project.title}\"></div>`
+                : `<div class=\"card-media\">assets/images/${project.id}/card.jpg</div>`;
+
+            const tokens = project.stack.map((item) => `<span class=\"token\">${item}</span>`).join("");
+
+            return `
+                <div class="card">
+                    ${imageBlock}
+                    <div class="label">Project</div>
+                    <h4>${project.title}</h4>
+                    <p>${project.summary}</p>
+                    <div class="label">Stack</div>
+                    <div class="token-list">${tokens}</div>
+                    <div class="label">Results</div>
+                    <p>${project.result}</p>
+                    <p><a href="${project.link}">View project details</a></p>
+                    <a class="cta secondary" href="${project.github}" target="_blank" rel="noopener">GITHUB REPO</a>
+                </div>
+            `;
+        }).join("");
+    });
+</script>
+
+</body>
+</html>

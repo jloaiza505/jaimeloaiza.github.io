@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Passive Exoskeleton Gait Study | Jaime Loaiza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="page">
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo">JL</a>
+        <div class="nav-links">
+            <a href="../projects.html">All Projects</a>
+            <a href="../index.html">Home</a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-banner" style="--hero-image: url('../assets/images/passive-exoskeleton-gait-study/hero.jpg');"></div>
+        <div class="hero-inner">
+            <div class="reveal" data-delay="1">
+                <h1>Passive Exoskeleton Gait Study</h1>
+                <p class="subtitle">Biomechanics &amp; Simulation</p>
+                <div class="hero-card">
+                    Study on how an elastic-band ankle exoskeleton affects muscle activation during gait.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="reveal" data-delay="2">
+            <h2>Executive Summary</h2>
+            <p class="section-intro">
+                OpenSim simulations were used to evaluate how elastic-band stiffness and resting length
+                influence muscle activation during gait for a passive ankle exoskeleton.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>Abstract</h2>
+            <p>
+                The study explores an elastic-band assistive device inspired by prior passive exoskeleton
+                work. Using an RRA-optimized OpenSim model and static optimization, the effect of stiffness
+                and resting length on plantar flexors, dorsiflexors, knee flexors, and knee extensors was
+                quantified to find parameter values that minimize total muscle activation.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>Methods</h2>
+            <p>
+                The right leg of an OpenSim model was analyzed with static optimization. An ideal elastic
+                band geometry followed the soleus path, then a more realistic external geometry was tested.
+            </p>
+            <ul>
+                <li>Stiffness sweep: 9 values from 10 to 1000 kN/m.</li>
+                <li>Resting length sweep: 285, 290, 295, 300 mm.</li>
+                <li>Quadratic regression used to locate minima in total muscle activation.</li>
+            </ul>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Key Findings</h2>
+            <ul>
+                <li>Plantar flexor activation decreases as stiffness increases; dorsiflexor activation increases.</li>
+                <li>Knee extensor activation decreases with higher stiffness; knee flexors show minimal change.</li>
+                <li>Rest length creates a trade-off: shorter lengths reduce plantar flexor load but raise dorsiflexor demand.</li>
+            </ul>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Optimal Parameters (Reported)</h2>
+            <ul>
+                <li>Ideal geometry: stiffness about 370 kN/m, resting length about 296.96 mm.</li>
+                <li>External geometry: stiffness about 165 kN/m, resting length about 331.6 mm.</li>
+            </ul>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>Discussion Highlights</h2>
+            <p>
+                The elastic band reduces plantar flexor activation during terminal stance, but increased
+                stiffness can over-activate dorsiflexors. Geometry shifts optimal values; the external
+                configuration reduced the stiffness required due to a longer moment arm.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>Read the Full PDF</h2>
+            <p class="section-intro">View the report inline or download it for offline reading.</p>
+            <div class="card-media" style="padding: 0; height: auto; min-height: 100vh; border: none; background: transparent;">
+                <iframe
+                    title="Passive Exoskeleton Gait Study PDF"
+                    src="../documents/Reduction%20of%20muscle%20activation%20of%20the%20right%20leg%20during%20gait%20using%20a%20passive%20exoskeleton.pdf"
+                    style="width: 100%; height: 100vh; min-height: 900px; border: 1px solid #d7d7d7; border-radius: 12px; display: block;"
+                ></iframe>
+            </div>
+            <p style="margin-top: 16px;">
+                <a href="../documents/Reduction%20of%20muscle%20activation%20of%20the%20right%20leg%20during%20gait%20using%20a%20passive%20exoskeleton.pdf" download>
+                    Download PDF
+                </a>
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2026 Jaime Loaiza
+    </footer>
+</div>
+
+</body>
+</html>

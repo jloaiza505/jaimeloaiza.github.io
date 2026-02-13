@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROS2 Beginner System | Jaime Loaiza</title>
+    <link rel="stylesheet" href="../css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="page">
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo">JL</a>
+        <div class="nav-links">
+            <a href="../projects.html">All Projects</a>
+            <a href="../index.html">Home</a>
+        </div>
+    </nav>
+    <header class="project-hero">
+        <div class="hero-banner" style="--hero-image: url('../assets/images/ros2-beginner-systems.jpg');"></div>
+        <div class="hero-inner">
+            <div class="reveal" data-delay="1">
+                <h1>ROS2 Beginner System</h1>
+                <p class="subtitle">Robotics &amp; Control</p>
+                <div class="hero-card">
+                    Publisher, subscriber, service, and launch demo showcasing core ROS2 concepts.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="reveal" data-delay="2">
+            <h2>Executive Summary</h2>
+            <p class="section-intro">
+                A portfolio-ready ROS2 project that demonstrates workspace setup, package structure, nodes,
+                topics, services, and a launch file in one coherent system.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>Objectives</h2>
+            <p>
+                Build a minimal ROS2 system that publishes a message, subscribes to it, and toggles
+                publishing via a service call, all orchestrated through a launch file.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>Role</h2>
+            <p>
+                Designed the system architecture, implemented the nodes and service interface, and documented
+                build/run steps for reproducibility.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>System / Methods</h2>
+            <p>
+                ROS2 workspace with separate talker, listener, and service packages plus a launch file that
+                starts all nodes together.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Project Structure</h2>
+            <pre><code>ros2_portfolio_project/
+├── ros2_ws/
+│   ├── src/
+│   │   ├── talker_pkg/
+│   │   │   └── src/talker_node.py
+│   │   ├── listener_pkg/
+│   │   │   └── src/listener_node.py
+│   │   ├── service_pkg/
+│   │   │   ├── srv/ToggleMessage.srv
+│   │   │   └── src/service_server.py
+│   │   │   └── src/service_client.py
+│   │   └── launch/demo_launch.py
+└── README.md</code></pre>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Implementation</h2>
+            <p>
+                Implemented a 1 Hz talker on <code>/chatter</code>, a listener with timestamped logs, and a
+                service that toggles publishing state. Added a launch file to run the full demo in one command.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Behavioral Requirements</h2>
+            <p>
+                Talker publishes only when enabled, the service toggles that state, and the listener always logs
+                received messages. Documented build, source, and launch commands in the README.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Build &amp; Validation</h2>
+            <p>
+                Verified messaging in terminal output, confirmed service toggling behavior, and tested the
+                launch flow after <code>colcon build</code> and environment sourcing.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Results</h2>
+            <p>
+                End-to-end ROS2 demo with reliable topic communication, service control, and repeatable launch.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>Challenges &amp; Tradeoffs</h2>
+            <p>
+                Balanced simplicity for learning with enough structure to be portfolio-ready and reusable.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>Next Steps</h2>
+            <p>
+                Add configurable publish rates, logging levels, a simulated sensor topic, and a simple action server.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>Links</h2>
+            <p><a href="https://github.com/" target="_blank" rel="noopener">GITHUB REPO</a></p>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2026 Jaime Loaiza
+    </footer>
+</div>
+
+</body>
+</html>
