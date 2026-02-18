@@ -6,7 +6,17 @@
     <link rel="icon" href="assets/images/shared/icon.png">
     <link rel="stylesheet" href="css/styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <meta name="description" content="Portfolio of Jaime Loaiza: multidisciplinary robotics, biomechanics, control systems, and assistive/wearable robotics projects.">
+    <link rel="canonical" href="https://jaimeloaiza.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Jaime Loaiza | Biomechanics + Robotics">
+    <meta property="og:description" content="Portfolio of Jaime Loaiza: multidisciplinary robotics, biomechanics, control systems, and assistive/wearable robotics projects.">
+    <meta property="og:url" content="https://jaimeloaiza.github.io/">
+    <meta property="og:image" content="https://jaimeloaiza.github.io/assets/images/shared/icon.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Jaime Loaiza | Biomechanics + Robotics">
+    <meta name="twitter:description" content="Portfolio of Jaime Loaiza: multidisciplinary robotics, biomechanics, control systems, and assistive/wearable robotics projects.">
+    <meta name="twitter:image" content="https://jaimeloaiza.github.io/assets/images/shared/icon.png">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
     
@@ -36,7 +46,7 @@
     <header class="main-header">
         <div class="reveal" data-delay="1">
             <h1>Jaime Loaiza</h1>
-            <p class="subtitle">Biomechanics &amp; Robotics Engineer</p>
+            <p class="subtitle">Mechatronics, Robotics &amp; Biomechanics Engineer</p>
             <div class="hero-meta">
                 <span class="chip">ROS2</span>
                 <span class="chip">Control Systems</span>
@@ -45,6 +55,9 @@
             <div class="hero-card">
                 Multidisciplinary robotics across hardware, software, programming, manufacturing, and system integration, with a current and long-term specialization in biomechanical modeling and control for assistive and wearable systems.
             </div>
+            <p class="nda-note">
+                Disclaimer: This portfolio is currently under construction, and projects are actively being added and updated.
+            </p>
         </div>
     </header>
 
@@ -56,14 +69,13 @@
                 <div>
                     <p class="section-intro">
                         I am a robotics-focused engineer with experience in system integration, 
-                        mechanical design, and ROS2-based development in C++/Python, contributing 
-                        to industrial automation projects from design to deployment.
+                        mechanical design, and ROS2-based development in C++/Python. My professional background concists of hands-on 
+                        contributions to industrial automation projects from design to deployment.
                     </p>
 
                     <p class="section-intro">
-                        I have explored biomechanics and musculoskeletal modeling through academic 
-                        and independent projects, with a growing interest in exoskeletons and 
-                        prosthetics.
+                        I have explored robotics, biomechanics and musculoskeletal modeling through academic 
+                        and independent projects, with a growing interest in exoskeletons and prosthetics.
                     </p>
 
                     <p class="section-intro">
@@ -80,8 +92,7 @@
         <section id="projects" class="reveal" data-delay="3">
             <h2>Projects</h2>
             <p class="section-intro">
-                Core work across biomechanics simulation, robotics control, and applied engineering tools.
-                Replace the placeholders with your real projects and links.
+                Core work across robotics control, biomechanics simulation, and applied engineering tools.
             </p>
             <p><a href="projects.html">View all projects</a></p>
 
@@ -112,7 +123,7 @@
 
         <section id="cv" class="reveal" data-delay="5">
             <h2>CV</h2>
-            <p class="section-intro">Download the one-page CV for a full snapshot of roles and education.</p>
+            <p class="section-intro">Download my one-page CV for a full snapshot of roles and education.</p>
             <div class="link-row">
                 <a class="cta" id="cv-link" href="assets/JaimeLoaiza_CV.pdf" target="_blank" rel="noopener">Download CV (PDF)</a>
             </div>
@@ -168,8 +179,8 @@
                 return `
                     <div class="card">
                         ${imageBlock}
-                        <div class="label">Problem</div>
                         <h4>${project.title}</h4>
+                        <div class="label">Summary</div>
                         <p>${project.summary}</p>
                         <div class="label">Stack</div>
                         <div class="token-list">${tokens}</div>
@@ -253,7 +264,6 @@
 
                     return `
                         <div class="card">
-                            <div class="label">${card.label || "Capabilities"}</div>
                             <h4>${card.title || "Card Title"}</h4>
                             <div class="label">${card.skillsLabel || "Skills"}</div>
                             <ul class="skills-list">${skillsList}</ul>
@@ -273,5 +283,9 @@
 
 </body>
 </html>
+
+
+
+
 
 

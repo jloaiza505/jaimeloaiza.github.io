@@ -26,7 +26,7 @@ window.prototypingData = {
         "Machine job automation with IoT and Intustry 4.0 "
       ],
       toolsLabel: "Tools",
-      tools: ["3D Printing", "Laser-cutters", "Bending & punching machines"],
+      tools: ["3D Printing", "CNC", "Sheet metal fabrication"],
       evidenceLabel: "Evidence",
       evidenceText: "View fabrication and integration evidence",
       evidenceUrl: "projects/prototyping-fabrication-integration-evidence.html"
