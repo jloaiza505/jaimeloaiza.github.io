@@ -1,0 +1,162 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROS 2 Differential Drive Control Demo | Jaime Loaiza</title>
+    <link rel="icon" href="../assets/images/shared/icon.png">
+    <link rel="stylesheet" href="../css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R24RTV018F"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R24RTV018F');
+    </script>
+</head>
+<body>
+
+<div class="page">
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo">JL</a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">All Projects</a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-banner" style="--hero-image: url('../assets/images/ros2-diff-drive-control-demo/banner.png');"></div>
+        <div class="hero-inner">
+            <div class="reveal" data-delay="1">
+                <h1>ROS 2 Differential Drive Robot: From URDF Modeling to ros2_control Bringup</h1>
+                <p class="subtitle">Robotics &amp; Control</p>
+                <div class="hero-card">
+                    End-to-end ROS 2 demo that unifies URDF/Xacro, TF, ros2_control, and RViz2 for a coherent differential-drive bringup.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="reveal" data-delay="2">
+            <h2>Problem Statement</h2>
+            <p>
+                This project builds a complete but minimal ROS 2 differential-drive pipeline that models robot geometry and kinematics,
+                publishes consistent TF and joint states, runs <code>ros2_control</code> with a diff-drive controller, and visualizes behavior in RViz2.
+                The main engineering challenge is keeping description, control, and visualization aligned to the same robot definition and frame conventions.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>System Architecture</h2>
+            <p>
+                The workspace is split into <code>my_robot_description</code> (URDF/Xacro, RViz config, display launch) and <code>my_robot_bringup</code>
+                (controller YAML, full bringup launch).
+            </p>
+            <ol>
+                <li>Xacro expands <code>my_robot.urdf.xacro</code>.</li>
+                <li><code>robot_state_publisher</code> publishes TF from <code>robot_description</code>.</li>
+                <li><code>ros2_control_node</code> loads the same <code>robot_description</code> and controller config.</li>
+                <li><code>joint_state_broadcaster</code> publishes <code>/joint_states</code>.</li>
+                <li><code>diff_drive_controller</code> commands wheel joints and publishes odometry/TF.</li>
+                <li>RViz2 visualizes robot and transforms.</li>
+                <li><code>teleop_twist_keyboard</code> publishes stamped commands to <code>/diff_drive_controller/cmd_vel</code>.</li>
+            </ol>
+            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/arch_node_graph.png" alt="ROS 2 runtime node graph"></div>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>Technical Implementation</h2>
+            <h3>Software Stack</h3>
+            <ul>
+                <li>WSL2 + Ubuntu 22.04 LTS</li>
+                <li>ROS 2 Humble</li>
+                <li><code>ament_cmake</code> + <code>colcon</code></li>
+                <li><code>xacro</code>, <code>robot_state_publisher</code>, <code>joint_state_publisher_gui</code>, <code>rviz2</code></li>
+                <li><code>controller_manager</code>, <code>ros2_control</code>, <code>ros2_controllers</code></li>
+                <li><code>diff_drive_controller</code>, <code>joint_state_broadcaster</code></li>
+                <li><code>teleop_twist_keyboard</code></li>
+                <li>Mock hardware plugin: <code>mock_components/GenericSystem</code></li>
+            </ul>
+            <h3>Core Engineering Decisions</h3>
+            <ul>
+                <li>Modularized Xacro to keep robot model, common properties, and <code>ros2_control</code> blocks maintainable.</li>
+                <li>Injected one shared Xacro-generated <code>robot_description</code> into both <code>robot_state_publisher</code> and <code>ros2_control_node</code>.</li>
+                <li>Configured wheel joints with velocity command + position/velocity state interfaces to match diff-drive control needs.</li>
+                <li>Used explicit frame and odometry settings: <code>base_footprint</code>, <code>odom</code>, and <code>enable_odom_tf: true</code>.</li>
+                <li>Set controller and manager update rates to 50 Hz for smooth testing feedback.</li>
+                <li>Mapped teleop commands to <code>/diff_drive_controller/cmd_vel</code> with stamped Twist enabled.</li>
+            </ul>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Key Challenges &amp; Solutions</h2>
+            <ul>
+                <li>Inconsistent descriptions across nodes caused TF issues; fixed by passing the same generated <code>robot_description</code> everywhere.</li>
+                <li>Controllers loaded without useful wheel feedback; fixed by explicitly defining wheel joint command/state interfaces in Xacro.</li>
+                <li>Silent naming mismatches blocked control wiring; fixed by keeping wheel joint names consistent across URDF and YAML.</li>
+                <li>Startup sequencing made controller activation harder to debug; fixed with dedicated spawner nodes in launch.</li>
+            </ul>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Results</h2>
+            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/urdf_rviz_model.png" alt="RViz model view"></div>
+            <p>
+                The demo provides a working ROS 2 control pipeline: model loads in RViz2, joint states are published,
+                diff-drive controller is active, odometry TF is aligned with configured frames, and keyboard teleop reliably commands motion.
+            </p>
+            <pre><code>ros2 control list_controllers
+ros2 topic echo /joint_states
+ros2 topic list | grep diff_drive</code></pre>
+            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/controllers_active_terminal.png" alt="Active ROS 2 controllers"></div>
+            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/topics_check_terminal.png" alt="ROS 2 topic checks"></div>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>Reproducibility</h2>
+            <p>
+                Developed and tested in WSL2 (Ubuntu + ROS 2 Humble). Build and run sequence:
+            </p>
+            <pre><code>source /opt/ros/humble/setup.bash
+colcon build
+source install/setup.bash
+
+ros2 launch my_robot_description display.launch.xml
+ros2 launch my_robot_bringup my_robot.launch.xml
+
+ros2 run teleop_twist_keyboard teleop_twist_keyboard --ros-args -r /cmd_vel:=/diff_drive_controller/cmd_vel -p stamped:=true</code></pre>
+            <p>
+                Key files: <code>my_robot.urdf.xacro</code>, <code>mobile_base.xacro</code>,
+                <code>mobile_base.ros2_control.xacro</code>, <code>my_robot_controllers.yaml</code>, and <code>my_robot.launch.xml</code>.
+            </p>
+            <p><a class="github-btn" href="https://github.com/jloaiza505/ros2_diff_drive_control_demo" target="_blank" rel="noopener">GITHUB REPO</a></p>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>What I Would Improve</h2>
+            <ul>
+                <li>Replace placeholder package metadata and tighten versioning/license discipline.</li>
+                <li>Add a real hardware or Gazebo/Ignition interface instead of mock components.</li>
+                <li>Add launch tests for controller states and TF availability, plus CI checks for Xacro/URDF consistency.</li>
+                <li>Add teleop and trajectory benchmark tests for latency, odometry drift, and controller stability.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2026 Jaime Loaiza
+    </footer>
+</div>
+
+<script src="../js/code-blocks.js"></script>
+
+</body>
+</html>
+
+

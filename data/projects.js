@@ -1,4 +1,4 @@
-const projects = [
+﻿const projects = [
   {
     id: "opensim-gait-optimization",
     title: "OpenSim Gait Optimization",
@@ -33,6 +33,18 @@ const projects = [
     ready_to_publish: false,
     github: "https://github.com/",
     link: "projects/ros2-manipulator-control.html",
+    image: ""
+  },
+  {
+    id: "ros2-diff-drive-control-demo",
+    title: "ROS 2 Differential Drive Control Demo",
+    category: "Robotics & Control",
+    summary: "End-to-end ROS 2 pipeline from URDF/Xacro to ros2_control differential-drive bringup.",
+    stack: ["ROS 2", "ros2_control", "Xacro"],
+    result: "Working TF, joint states, active diff-drive controller, and reproducible teleop workflow.",
+    ready_to_publish: true,
+    github: "https://github.com/jloaiza505/ros2_diff_drive_control_demo",
+    link: "projects/ros2-diff-drive-control-demo.html",
     image: ""
   },
   {
@@ -96,3 +108,6 @@ const projects = [
     image: ""
   }
 ];
+
+
+

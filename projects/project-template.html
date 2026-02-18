@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -48,7 +48,7 @@
             <h2>Problem Statement</h2>
             <p>
                 What problem are you solving? Why does it matter? Where would it be used?
-                Keep this to 3–6 lines and make it technical and clear.
+                Keep this to 3-6 lines and make it technical and clear.
             </p>
         </section>
 
@@ -56,14 +56,24 @@
             <h2>System Architecture</h2>
             <p>
                 Describe nodes, topics, data flow, hardware, software stack, and simulation environment.
+                Example inline code style: <code>/diff_drive_controller/cmd_vel</code>.
             </p>
-            <div class="card-media">Architecture diagram placeholder</div>
+            <ol>
+                <li>Xacro/URDF loads and publishes <code>robot_description</code>.</li>
+                <li>Controller manager starts and activates controllers.</li>
+                <li>Visualization and teleoperation connect to runtime topics.</li>
+            </ol>
+            <div class="card-media project-media">Architecture diagram/image placeholder</div>
         </section>
 
         <section class="reveal" data-delay="3">
             <h2>Technical Implementation</h2>
             <h3>Software Stack</h3>
-            <p>ROS2 distribution, packages used, custom messages/services, build system.</p>
+            <ul>
+                <li>ROS2 distribution</li>
+                <li><code>ament_cmake</code> + <code>colcon</code></li>
+                <li>Key packages and plugins</li>
+            </ul>
             <h3>Core Engineering Decisions</h3>
             <p>Why this communication model, filter, controller, or architecture?</p>
         </section>
@@ -71,26 +81,34 @@
         <section class="reveal" data-delay="4">
             <h2>Key Challenges &amp; Solutions</h2>
             <ul>
-                <li>Problem — Root cause — Engineering fix</li>
-                <li>Problem — Root cause — Engineering fix</li>
-                <li>Problem — Root cause — Engineering fix</li>
+                <li>Problem - Root cause - Engineering fix</li>
+                <li>Problem - Root cause - Engineering fix</li>
+                <li>Problem - Root cause - Engineering fix</li>
             </ul>
         </section>
 
         <section class="reveal" data-delay="4">
             <h2>Results</h2>
+            <div class="card-media project-media">Results image/plot placeholder</div>
             <p>
                 Include metrics: latency, accuracy, error reduction, FPS, real-time factor, CPU load.
                 Quantify performance.
             </p>
+            <pre><code>ros2 control list_controllers
+ros2 topic echo /joint_states
+ros2 topic list | grep diff_drive</code></pre>
         </section>
 
         <section class="reveal" data-delay="5">
             <h2>Reproducibility</h2>
             <p>
-                GitHub link, installation steps, demo video (30–60s), Dockerfile if applicable.
+                GitHub link, installation steps, demo video (30-60s), Dockerfile if applicable.
             </p>
-            <p><a href="https://github.com/" target="_blank" rel="noopener">GITHUB REPO</a></p>
+            <pre><code>source /opt/ros/humble/setup.bash
+colcon build
+source install/setup.bash
+ros2 launch package_name bringup.launch.xml</code></pre>
+            <p><a class="github-btn" href="https://github.com/" target="_blank" rel="noopener">GITHUB REPO</a></p>
         </section>
 
         <section class="reveal" data-delay="5">
@@ -106,5 +124,8 @@
     </footer>
 </div>
 
+<script src="../js/code-blocks.js"></script>
+
 </body>
 </html>
+

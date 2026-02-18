@@ -81,7 +81,7 @@
         container.innerHTML = items.map((project) => {
             const imageBlock = project.image
                 ? `<div class=\"card-media\"><img src=\"${project.image}\" alt=\"${project.title}\"></div>`
-                : `<div class=\"card-media\">assets/images/${project.id}/card.jpg</div>`;
+                : `<div class=\"card-media\"><img src=\"assets/images/${project.id}/card.png\" alt=\"${project.title}\"></div>`;
 
             const tokens = project.stack.map((item) => `<span class=\"token\">${item}</span>`).join("");
 
@@ -96,7 +96,7 @@
                     <div class="label">Results</div>
                     <p>${project.result}</p>
                     <p><a href="${project.link}">View project details</a></p>
-                    <a class="cta secondary" href="${project.github}" target="_blank" rel="noopener">GITHUB REPO</a>
+                    <a class="github-btn" href="${project.github}" target="_blank" rel="noopener">GITHUB REPO</a>
                 </div>
             `;
         }).join("");

@@ -86,8 +86,10 @@ header {
     background:
         linear-gradient(180deg, rgba(12, 17, 22, 0.45), rgba(12, 17, 22, 0.1)),
         var(--hero-image, linear-gradient(135deg, rgba(109, 94, 252, 0.35), rgba(138, 107, 231, 0.25)));
-    background-size: cover;
-    background-position: center;
+    background-size: cover, contain;
+    background-position: center, center;
+    background-repeat: no-repeat, no-repeat;
+    background-color: #0c1116;
     border-bottom: 1px solid var(--stroke);
 }
 
@@ -221,6 +223,80 @@ p {
     display: block;
 }
 
+.project-media {
+    height: auto;
+    min-height: 0;
+    padding: 0;
+}
+
+.project-media img {
+    width: 100%;
+    height: auto;
+    max-height: 72vh;
+    object-fit: contain;
+}
+
+pre {
+    background: #101722;
+    color: #e9eef7;
+    border: 1px solid #223046;
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    margin: 14px 0;
+    position: relative;
+}
+
+pre::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 40px;
+    background: #0a1019;
+    border-bottom: 1px solid #223046;
+}
+
+pre code {
+    font-family: "Consolas", "Cascadia Code", "Courier New", monospace;
+    font-size: 0.92rem;
+    line-height: 1.5;
+    white-space: pre;
+    display: block;
+    padding: 50px 16px 14px 16px;
+    overflow-x: auto;
+}
+
+code:not(pre code) {
+    background: #f2effb;
+    color: #6d5efc;
+    border: 1px solid #dfd7f5;
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-family: "Consolas", "Cascadia Code", "Courier New", monospace;
+    font-size: 0.92em;
+}
+
+.code-copy-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 2;
+    border: 1px solid #344763;
+    background: #1a2433;
+    color: #dbe5f5;
+    border-radius: 6px;
+    padding: 4px 9px;
+    font-size: 0.78rem;
+    font-family: "Space Grotesk", "Segoe UI", sans-serif;
+    cursor: pointer;
+}
+
+.code-copy-btn:hover {
+    background: #223046;
+}
+
 .card .label {
     font-size: 0.85rem;
     letter-spacing: 0.08em;
@@ -349,6 +425,36 @@ p {
     color: var(--ink);
     border: 1px solid var(--stroke);
     font-weight: 500;
+}
+
+.github-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-radius: 999px;
+    border: 1px solid rgba(109, 94, 252, 0.35);
+    background: linear-gradient(180deg, #171d29 0%, #0f141d 100%);
+    color: #f5f2fb;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    box-shadow: 0 6px 16px rgba(12, 17, 22, 0.18);
+}
+
+.github-btn::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    background-color: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='black' d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='black' d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.github-btn:hover {
+    background: linear-gradient(180deg, #1f2735 0%, #131b27 100%);
+    border-color: rgba(138, 107, 231, 0.55);
+    text-decoration: none;
 }
 
 .reveal {

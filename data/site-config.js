@@ -6,6 +6,7 @@ const siteConfig = {
       "musculoskeletal-model-validation"
     ],
     "Robotics & Control": [
+      "ros2-diff-drive-control-demo",
       "ros2-manipulator-control",
       "adaptive-robotic-gripper",
       "ros2-beginner-systems"
