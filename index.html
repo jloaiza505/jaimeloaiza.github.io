@@ -27,7 +27,7 @@
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="projects.html">Projects</a>
-            <a href="#build">Prototyping</a>
+            <a href="#build">Prototyping &amp; Development</a>
             <a href="#stack">Stack</a>
             <a href="#cv">CV</a>
             <a href="#contact">Contact</a>
@@ -38,12 +38,12 @@
             <h1>Jaime Loaiza</h1>
             <p class="subtitle">Biomechanics &amp; Robotics Engineer</p>
             <div class="hero-meta">
+                <span class="chip">ROS2</span>
                 <span class="chip">Control Systems</span>
                 <span class="chip">Musculoskeletal Simulation</span>
-                <span class="chip">ROS2</span>
             </div>
             <div class="hero-card">
-                Robotics focused on biomechanical modeling and control for assistive and wearable systems.
+                Multidisciplinary robotics across hardware, software, programming, manufacturing, and system integration, with a current and long-term specialization in biomechanical modeling and control for assistive and wearable systems.
             </div>
         </div>
     </header>
@@ -85,42 +85,24 @@
             </p>
             <p><a href="projects.html">View all projects</a></p>
 
-            <h3>Biomechanics &amp; Simulation</h3>
-            <div class="projects" data-category="Biomechanics &amp; Simulation"></div>
-
             <h3>Robotics &amp; Control</h3>
             <div class="projects" data-category="Robotics &amp; Control"></div>
+
+            <h3>Biomechanics &amp; Simulation</h3>
+            <div class="projects" data-category="Biomechanics &amp; Simulation"></div>
 
             <h3>Applied Engineering / Industrial Tools</h3>
             <div class="projects" data-category="Applied Engineering / Industrial Tools"></div>
         </section>
 
         <section id="build" class="reveal" data-delay="4">
-            <h2>Prototyping &amp; Build</h2>
-            <p class="section-intro">
-                Hands-on fabrication experience alongside simulation and control work.
-                Add photos, fixtures, and build notes to make this tangible.
+            <h2>Prototyping &amp; Development</h2>
+            <p class="section-intro" id="prototyping-intro"></p>
+            <div class="projects" id="prototyping-grid"></div>
+            <p class="nda-note">
+                Disclaimer: The material presented in this section is authorized for public display and publication.
+                Certain high-impact projects were executed under NDA and confidentiality obligations, therefore only representative, non-confidential examples are shown.
             </p>
-            <div class="projects">
-                <div class="card">
-                    <div class="label">Capabilities</div>
-                    <h4>CAD &amp; Mechanical Design</h4>
-                    <p>Parametric modeling, assemblies, and tolerance-aware design.</p>
-                    <div class="label">Tools</div>
-                    <p class="stack">SolidWorks, Fusion 360, GD&amp;T</p>
-                    <div class="label">Evidence</div>
-                    <p>Link to a fixture or prototype model.</p>
-                </div>
-                <div class="card">
-                    <div class="label">Capabilities</div>
-                    <h4>Fabrication &amp; Machines</h4>
-                    <p>3D printing, laser cutting, and bending machines for rapid iteration.</p>
-                    <div class="label">Examples</div>
-                    <p class="stack">FDM prints, acrylic jigs, sheet metal brackets</p>
-                    <div class="label">Evidence</div>
-                    <p>Photo of a build + what it enabled in testing.</p>
-                </div>
-            </div>
         </section>
 
         <section id="stack" class="reveal" data-delay="4">
@@ -159,6 +141,7 @@
     </footer>
     <script src="data/projects.js"></script>
     <script src="data/site-config.js"></script>
+    <script src="data/prototyping.js"></script>
     <script src="data/stack.js"></script>
     <script>
         const byId = new Map(projects.map((project) => [project.id, project]));
@@ -241,6 +224,48 @@
                 }).join("");
             }
         }
+
+        const prototypingIntro = document.getElementById("prototyping-intro");
+        const prototypingGrid = document.getElementById("prototyping-grid");
+        if (prototypingIntro && prototypingGrid) {
+            const proto = window.prototypingData || {};
+            const cards = Array.isArray(proto.cards) ? proto.cards.slice(0, 2) : [];
+            prototypingIntro.textContent = proto.intro || "Hands-on prototyping and development experience connected to design, integration, and test workflows.";
+
+            if (cards.length === 0) {
+                prototypingGrid.innerHTML = "<p class=\"section-intro\">Prototyping cards coming soon.</p>";
+            } else {
+                prototypingGrid.innerHTML = cards.map((card) => {
+                    const skills = Array.isArray(card.skills)
+                        ? card.skills
+                        : (card.description ? [card.description] : []);
+
+                    const tools = Array.isArray(card.tools)
+                        ? card.tools
+                        : (card.meta ? String(card.meta).split(",").map((item) => item.trim()).filter(Boolean) : []);
+
+                    const skillsList = skills.map((skill) => `<li>${skill}</li>`).join("");
+                    const toolsTokens = tools.map((tool) => `<span class="token">${tool}</span>`).join("");
+
+                    const evidenceBlock = card.evidenceUrl
+                        ? `<div class="card-link-row"><a class="project-btn" href="${card.evidenceUrl}">${card.evidenceText || "View evidence"}</a></div>`
+                        : `<p>${card.evidenceText || card.evidence || "Add evidence link or note."}</p>`;
+
+                    return `
+                        <div class="card">
+                            <div class="label">${card.label || "Capabilities"}</div>
+                            <h4>${card.title || "Card Title"}</h4>
+                            <div class="label">${card.skillsLabel || "Skills"}</div>
+                            <ul class="skills-list">${skillsList}</ul>
+                            <div class="label">${card.toolsLabel || card.metaLabel || "Tools"}</div>
+                            <div class="token-list">${toolsTokens}</div>
+                            <div class="label">${card.evidenceLabel || "Evidence"}</div>
+                            ${evidenceBlock}
+                        </div>
+                    `;
+                }).join("");
+            }
+        }
     </script>
 </div>
 
@@ -248,6 +273,5 @@
 
 </body>
 </html>
-
 
 

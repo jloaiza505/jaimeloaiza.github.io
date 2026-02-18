@@ -416,6 +416,16 @@ code:not(pre code) {
     color: var(--muted);
 }
 
+.nda-note {
+    margin: 10px 0 16px 0;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #f2effb;
+    border: 1px solid #dfd7f5;
+    color: #4f4a75;
+    font-size: 0.92rem;
+}
+
 .about-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -477,6 +487,15 @@ code:not(pre code) {
 }
 
 .stack-list li {
+    margin: 4px 0;
+}
+
+.skills-list {
+    margin: 0 0 10px 0;
+    padding-left: 18px;
+}
+
+.skills-list li {
     margin: 4px 0;
 }
 
