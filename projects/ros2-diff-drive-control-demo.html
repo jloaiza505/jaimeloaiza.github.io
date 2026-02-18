@@ -67,7 +67,10 @@
                 <li>RViz2 visualizes robot and transforms.</li>
                 <li><code>teleop_twist_keyboard</code> publishes stamped commands to <code>/diff_drive_controller/cmd_vel</code>.</li>
             </ol>
-            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/arch_node_graph.png" alt="ROS 2 runtime node graph"></div>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-diff-drive-control-demo/arch_node_graph.png" alt="ROS 2 runtime node graph">
+                <p class="media-caption">Runtime node graph of the full ROS 2 bringup pipeline.</p>
+            </div>
         </section>
 
         <section class="reveal" data-delay="3">
@@ -106,7 +109,10 @@
 
         <section class="reveal" data-delay="4">
             <h2>Results</h2>
-            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/urdf_rviz_model.png" alt="RViz model view"></div>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-diff-drive-control-demo/urdf_rviz_model.png" alt="RViz model view">
+                <p class="media-caption">RViz model view after loading the robot description.</p>
+            </div>
             <p>
                 The demo provides a working ROS 2 control pipeline: model loads in RViz2, joint states are published,
                 diff-drive controller is active, odometry TF is aligned with configured frames, and keyboard teleop reliably commands motion.
@@ -114,10 +120,19 @@
             <pre><code>ros2 control list_controllers
 ros2 topic echo /joint_states
 ros2 topic list | grep diff_drive</code></pre>
-            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/controllers_active_terminal.png" alt="Active ROS 2 controllers"></div>
-            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/topics_check_terminal.png" alt="ROS 2 topic checks"></div>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-diff-drive-control-demo/controllers_active_terminal.png" alt="Active ROS 2 controllers">
+                <p class="media-caption">Controller manager output confirming active controllers.</p>
+            </div>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-diff-drive-control-demo/topics_check_terminal.png" alt="ROS 2 topic checks">
+                <p class="media-caption">Terminal check of key runtime ROS 2 topics.</p>
+            </div>
             <h3>Demo with Teleop</h3>
-            <div class="card-media project-media"><img src="../assets/images/ros2-diff-drive-control-demo/demo_teleop_control.gif" alt="Demo with teleop control"></div>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-diff-drive-control-demo/demo_teleop_control.gif" alt="Demo with teleop control">
+                <p class="media-caption">Demo with keyboard teleoperation controlling the differential-drive robot.</p>
+            </div>
         </section>
 
         <section class="reveal" data-delay="5">

@@ -291,6 +291,11 @@ p {
     height: auto;
     min-height: 0;
     padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
 }
 
 .project-media img {
@@ -298,6 +303,17 @@ p {
     height: auto;
     max-height: 72vh;
     object-fit: contain;
+    display: block;
+}
+
+.project-media .media-caption {
+    width: 100%;
+    margin: 0;
+    padding: 0 8px 8px 8px;
+    text-align: center;
+    font-style: italic;
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
 pre {
