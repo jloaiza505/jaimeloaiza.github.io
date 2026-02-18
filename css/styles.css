@@ -71,6 +71,52 @@ body {
     opacity: 1;
 }
 
+.nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    border: 1px solid var(--stroke);
+    background: #fff;
+    color: var(--ink);
+    cursor: pointer;
+    padding: 0;
+}
+
+.nav-toggle:hover {
+    background: #f7f3ff;
+}
+
+.nav-toggle-line {
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+    display: block;
+    position: relative;
+}
+
+.nav-toggle-line::before,
+.nav-toggle-line::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 2px;
+    background: currentColor;
+    border-radius: 2px;
+}
+
+.nav-toggle-line::before {
+    top: -5px;
+}
+
+.nav-toggle-line::after {
+    top: 5px;
+}
+
 header {
     padding: 90px 20px 40px 20px;
     max-width: 1000px;
@@ -543,22 +589,32 @@ code:not(pre code) {
     .nav {
         position: sticky;
         padding: 10px 12px;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-wrap: wrap;
+        align-items: center;
         gap: 8px;
+    }
+
+    .nav-toggle {
+        display: inline-flex;
+        margin-left: auto;
     }
 
     .nav-links {
         width: 100%;
-        flex-wrap: nowrap;
-        overflow-x: auto;
-        gap: 10px;
-        padding-bottom: 2px;
+        display: none;
+        flex-direction: column;
+        gap: 6px;
+        padding: 6px 0 2px 0;
+    }
+
+    .nav.is-open .nav-links {
+        display: flex;
     }
 
     .nav-links a {
-        white-space: nowrap;
+        white-space: normal;
         font-size: 0.9rem;
+        padding: 4px 0;
     }
 
     .main-header {
