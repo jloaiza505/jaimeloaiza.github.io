@@ -1,20 +1,13 @@
 const siteConfig = {
   featuredByCategory: {
     "Biomechanics & Simulation": [
-      "passive-exoskeleton-gait-study",
-      "opensim-gait-optimization",
-      "musculoskeletal-model-validation"
+      "passive-exoskeleton-gait-study"
     ],
     "Robotics & Control": [
       "ros2-diff-drive-control-demo",
-      "ros2-manipulator-control",
-      "adaptive-robotic-gripper",
-      "ros2-beginner-systems"
+      "ros2-differential-drive-ekf"
     ],
-    "Applied Engineering / Industrial Tools": [
-      "industrial-sensor-tooling",
-      "automation-fixture-design"
-    ]
+    "Applied Engineering / Industrial Tools": []
   },
   cvFile: "assets/CV - Masters Student.pdf",
   github: {

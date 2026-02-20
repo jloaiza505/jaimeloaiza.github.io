@@ -1,43 +1,7 @@
 ﻿const projects = [
   {
-    id: "opensim-gait-optimization",
-    title: "OpenSim Gait Optimization",
-    category: "Biomechanics & Simulation",
-    summary: "Pipeline to optimize gait parameters with musculoskeletal dynamics.",
-    stack: ["OpenSim", "MATLAB", "Python"],
-    result: "Reduced simulated cost of transport by 12% in benchmark trials.",
-    ready_to_publish: false,
-    github: "https://github.com/",
-    link: "projects/opensim-gait-optimization.html",
-    image: ""
-  },
-  {
-    id: "musculoskeletal-model-validation",
-    title: "Musculoskeletal Model Validation",
-    category: "Biomechanics & Simulation",
-    summary: "Validation of joint torque predictions against motion-capture datasets.",
-    stack: ["OpenSim", "Python", "NumPy"],
-    result: "Improved torque RMS error by 18% versus baseline model.",
-    ready_to_publish: false,
-    github: "https://github.com/",
-    link: "projects/musculoskeletal-model-validation.html",
-    image: ""
-  },
-  {
-    id: "ros2-manipulator-control",
-    title: "ROS2 Manipulator Control",
-    category: "Robotics & Control",
-    summary: "Trajectory tracking for a 6-DOF manipulator in ROS2.",
-    stack: ["ROS2", "C++", "Python"],
-    result: "Achieved sub-2 cm end-effector tracking error.",
-    ready_to_publish: false,
-    github: "https://github.com/",
-    link: "projects/ros2-manipulator-control.html",
-    image: ""
-  },
-  {
     id: "ros2-diff-drive-control-demo",
-    title: "ROS 2 Differential Drive Control Demo",
+    title: "ROS 2 - Differential Drive Robot: From URDF Modeling to ros2_control Bringup",
     category: "Robotics & Control",
     summary: "End-to-end ROS 2 pipeline from URDF/Xacro to ros2_control differential-drive bringup.",
     stack: ["ROS 2", "ros2_control", "Xacro"],
@@ -49,7 +13,7 @@
   },
   {
     id: "passive-exoskeleton-gait-study",
-    title: "Passive Exoskeleton Gait Study",
+    title: "Opensim - Passive Exoskeleton Gait Study",
     category: "Biomechanics & Simulation",
     summary: "Paper on reducing right-leg muscle activation during gait using a passive exoskeleton.",
     stack: ["Biomechanics", "Gait Analysis", "Exoskeletons"],
@@ -57,18 +21,6 @@
     ready_to_publish: true,
     github: "https://github.com/",
     link: "projects/passive-exoskeleton-gait-study.html",
-    image: ""
-  },
-  {
-    id: "adaptive-robotic-gripper",
-    title: "Adaptive Robotic Gripper",
-    category: "Robotics & Control",
-    summary: "Compliant gripper for handling irregular geometry.",
-    stack: ["CAD", "Embedded", "ROS2"],
-    result: "Stable grasps on 10+ object types with no slippage.",
-    ready_to_publish: false,
-    github: "https://github.com/",
-    link: "projects/adaptive-robotic-gripper.html",
     image: ""
   },
   {
@@ -84,30 +36,15 @@
     image: ""
   },
   {
-    id: "industrial-sensor-tooling",
-    title: "Industrial Sensor Tooling",
-    category: "Applied Engineering / Industrial Tools",
-    summary: "Diagnostics and visualization tools for sensor deployments.",
-    stack: ["Python", "Pandas", "Plotly"],
-    result: "Cut troubleshooting time by 40% across deployments.",
-    ready_to_publish: false,
-    github: "https://github.com/",
-    link: "projects/industrial-sensor-tooling.html",
-    image: ""
-  },
-  {
-    id: "automation-fixture-design",
-    title: "Automation Fixture Design",
-    category: "Applied Engineering / Industrial Tools",
-    summary: "Fixtures for repeatable assembly and testing.",
-    stack: ["SolidWorks", "GD&T", "Manufacturing"],
-    result: "Improved assembly repeatability by 25%.",
-    ready_to_publish: false,
-    github: "https://github.com/",
-    link: "projects/automation-fixture-design.html",
+    id: "ros2-differential-drive-ekf",
+    title: "ROS2 - Differential-Drive Simulation with EKF State Estimation",
+    category: "Robotics & Control",
+    summary: "ROS 2 simulation pipeline comparing noisy wheel odometry against EKF-filtered estimates with reproducible CSV metrics.",
+    stack: ["ROS 2", "EKF", "Python", "RViz2"],
+    result: "Reduced yaw RMSE with measurable filtering behavior and reproducible metrics/plots.",
+    ready_to_publish: true,
+    github: "https://github.com/jloaiza505/ros2-differential-drive-ekf",
+    link: "projects/ros2-differential-drive-ekf.html",
     image: ""
   }
 ];
-
-
-

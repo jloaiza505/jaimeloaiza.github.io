@@ -105,8 +105,10 @@
                     <div class="token-list">${tokens}</div>
                     <div class="label">Results</div>
                     <p>${project.result}</p>
-                    <p><a href="${project.link}">View project details</a></p>
-                    <a class="github-btn" href="${project.github}" target="_blank" rel="noopener">GITHUB REPO</a>
+                    <div class="card-link-row">
+                        <a class="project-btn" href="${project.link}">Project details</a>
+                        <a class="github-btn" href="${project.github}" target="_blank" rel="noopener">REPO</a>
+                    </div>
                 </div>
             `;
         }).join("");
@@ -117,7 +119,6 @@
 
 </body>
 </html>
-
 
 
 

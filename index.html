@@ -36,9 +36,10 @@
         <a href="index.html" class="nav-logo"><img src="assets/images/shared/icon.png" alt="Home"></a>
         <div class="nav-links">
             <a href="#about">About</a>
-            <a href="projects.html">Projects</a>
-            <a href="#build">Prototyping &amp; Development</a>
             <a href="#stack">Stack</a>
+            <a href="#mechanical-toolchain">Toolchain</a>
+            <a href="#projects">Projects</a>
+            <a href="#build">Designs &amp; Fabrication</a>
             <a href="#cv">CV</a>
             <a href="#contact">Contact</a>
         </div>
@@ -51,6 +52,8 @@
                 <span class="chip">ROS2</span>
                 <span class="chip">Control Systems</span>
                 <span class="chip">Musculoskeletal Simulation</span>
+                <span class="chip">DFM / DFA</span>
+                <span class="chip">Mechanical Design (CAD)</span>
             </div>
             <div class="hero-card">
                 Multidisciplinary robotics across hardware, software, programming, manufacturing, and system integration, with a current and long-term specialization in biomechanical modeling and control for assistive and wearable systems.
@@ -89,6 +92,16 @@
             </div>
         </section>
 
+        <section id="stack" class="reveal" data-delay="4">
+            <h2>Technical Stack</h2>
+            <div class="stack-grid" id="stack-grid"></div>
+        </section>
+
+        <section id="mechanical-toolchain" class="reveal" data-delay="4">
+            <h2>Mechanical Toolchain</h2>
+            <div class="stack-grid" id="toolchain-grid"></div>
+        </section>
+
         <section id="projects" class="reveal" data-delay="3">
             <h2>Projects</h2>
             <p class="section-intro">
@@ -107,18 +120,13 @@
         </section>
 
         <section id="build" class="reveal" data-delay="4">
-            <h2>Prototyping &amp; Development</h2>
+            <h2>Designs &amp; Fabrication</h2>
             <p class="section-intro" id="prototyping-intro"></p>
             <div class="projects" id="prototyping-grid"></div>
             <p class="nda-note">
                 Disclaimer: The material presented in this section is authorized for public display and publication.
                 Certain high-impact projects were executed under NDA and confidentiality obligations, therefore only representative, non-confidential examples are shown.
             </p>
-        </section>
-
-        <section id="stack" class="reveal" data-delay="4">
-            <h2>Technical Stack</h2>
-            <div class="stack-grid" id="stack-grid"></div>
         </section>
 
         <section id="cv" class="reveal" data-delay="5">
@@ -129,18 +137,13 @@
             </div>
         </section>
 
-        <section id="github" class="reveal" data-delay="5">
-            <h2>GitHub</h2>
-            <p class="section-intro">Direct link and pinned repositories.</p>
-            <div class="link-row" id="github-links"></div>
-        </section>
-
         <section id="contact" class="reveal" data-delay="5">
             <h2>Contact</h2>
             <p class="section-intro">Emails & LinkedIn</p>
             <div class="link-row">
                 <a class="cta secondary" href="mailto:jloaiza505@gmail.com">jloaiza505@gmail.com</a>
                 <a class="cta secondary" href="mailto:jaime.loaiza@tum.de">jaime.loaiza@tum.de</a>
+                <a class="github-btn" id="github-main-link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
                 <a class="cta secondary" href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
             </div>
         </section>
@@ -154,6 +157,7 @@
     <script src="data/site-config.js"></script>
     <script src="data/prototyping.js"></script>
     <script src="data/stack.js"></script>
+    <script src="data/toolchain.js"></script>
     <script>
         const byId = new Map(projects.map((project) => [project.id, project]));
 
@@ -187,8 +191,8 @@
                         <div class="label">Results</div>
                         <p>${project.result}</p>
                         <div class="card-link-row">
-                            <a class="project-btn" href="${project.link}">View project details</a>
-                            <a class="github-btn" href="${project.github}" target="_blank" rel="noopener">GITHUB REPO</a>
+                            <a class="project-btn" href="${project.link}">Project details</a>
+                            <a class="github-btn" href="${project.github}" target="_blank" rel="noopener">REPO</a>
                         </div>
                     </div>
                 `;
@@ -200,41 +204,38 @@
             cvLink.setAttribute("href", siteConfig.cvFile);
         }
 
-        const githubLinks = document.getElementById("github-links");
-        if (githubLinks) {
+        const githubMainLink = document.getElementById("github-main-link");
+        if (githubMainLink) {
             const profile = siteConfig.github && siteConfig.github.profile;
-            const repos = (siteConfig.github && siteConfig.github.repos) || [];
-            const links = [];
             if (profile) {
-                links.push(`<a class="github-btn" href="${profile}" target="_blank" rel="noopener">${profile.replace("https://", "")}</a>`);
+                githubMainLink.setAttribute("href", profile);
             }
-            repos.forEach((repo) => {
-                const label = repo.label || "GITHUB REPO";
-                const url = repo.url || repo;
-                links.push(`<a class="github-btn" href="${url}" target="_blank" rel="noopener">${label}</a>`);
-            });
-            githubLinks.innerHTML = links.join("");
         }
 
-        const stackGrid = document.getElementById("stack-grid");
-        if (stackGrid) {
-            const sections = (window.stackData && window.stackData.sections) || [];
+        function renderStackSection(gridId, dataObject, emptyMessage) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+
+            const sections = (dataObject && dataObject.sections) || [];
             if (sections.length === 0) {
-                stackGrid.innerHTML = "<p class=\"section-intro\">Stack coming soon.</p>";
-            } else {
-                stackGrid.innerHTML = sections.map((section) => {
-                    const skills = (section.skills || [])
-                        .map((skill) => `<li>${skill}</li>`)
-                        .join("");
-                    return `
-                        <div class="stack-card">
-                            <h4>${section.title || "Section"}</h4>
-                            <ul class="stack-list">${skills}</ul>
-                        </div>
-                    `;
-                }).join("");
+                grid.innerHTML = `<p class="section-intro">${emptyMessage}</p>`;
+                return;
             }
+
+            grid.innerHTML = sections.map((section) => {
+                const skills = (section.skills || [])
+                    .map((skill) => `<li>${skill}</li>`)
+                    .join("");
+                return `
+                    <div class="stack-card">
+                        <h4>${section.title || "Section"}</h4>
+                        <ul class="stack-list">${skills}</ul>
+                    </div>
+                `;
+            }).join("");
         }
+        renderStackSection("stack-grid", window.stackData, "Stack coming soon.");
+        renderStackSection("toolchain-grid", window.toolchainData, "Mechanical toolchain coming soon.");
 
         const prototypingIntro = document.getElementById("prototyping-intro");
         const prototypingGrid = document.getElementById("prototyping-grid");
@@ -283,9 +284,3 @@
 
 </body>
 </html>
-
-
-
-
-
-
