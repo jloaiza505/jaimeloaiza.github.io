@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control | Jaime Loaiza</title>
+    <link rel="icon" href="../assets/images/shared/icon.png">
+    <link rel="stylesheet" href="../css/styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Project details page: ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control | Jaime Loaiza">
+    <link rel="canonical" href="https://jaimeloaiza.github.io/projects/ros2-urdf-gazebo-model.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control | Jaime Loaiza">
+    <meta property="og:description" content="Project details page: ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control | Jaime Loaiza">
+    <meta property="og:url" content="https://jaimeloaiza.github.io/projects/ros2-urdf-gazebo-model.html">
+    <meta property="og:image" content="https://jaimeloaiza.github.io/assets/images/shared/icon.png">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control | Jaime Loaiza">
+    <meta name="twitter:description" content="Project details page: ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control | Jaime Loaiza">
+    <meta name="twitter:image" content="https://jaimeloaiza.github.io/assets/images/shared/icon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Serif:wght@400;500&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-R24RTV018F"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-R24RTV018F');
+    </script>
+</head>
+<body>
+
+<div class="page">
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo"><img src="../assets/images/shared/icon.png" alt="Home"></a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../projects.html">All Projects</a>
+        </div>
+    </nav>
+
+    <header class="project-hero">
+        <div class="hero-banner banner-landscape" style="--hero-image: url('../assets/images/ros2-urdf-gazebo-model/banner.png');"></div>
+        <div class="hero-inner">
+            <div class="reveal" data-delay="1">
+                <h1>ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control</h1>
+                <p class="subtitle">Robotics &amp; Control</p>
+                <div class="hero-card">
+                    ROS 2 Jazzy project that validates a two-link URDF/Xacro model and drives it through <code>ros2_control</code> in headless and GUI Gazebo modes.
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="reveal" data-delay="2">
+            <h2>Problem Statement</h2>
+            <p>
+                This project addresses a common robotics setup problem: getting a physically meaningful robot model running in simulation
+                with reproducible control behavior. The goals were to build a URDF/Xacro model with valid inertial/collision/joint-limit
+                data, run it in modern Gazebo through <code>ros2_control</code>, and drive joints from C++ nodes while monitoring behavior
+                through ROS topics and RViz.
+            </p>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>System Architecture</h2>
+            <p>
+                The repository is organized as a ROS 2 workspace with two packages: <code>robot_description_pkg</code> for model files and
+                <code>robot_sim_pkg</code> for control nodes, controller config, RViz config, and launches.
+                Runtime flow uses <code>robot_state_publisher</code>, <code>ros_gz_sim</code>, <code>gz_ros2_control</code>,
+                <code>joint_command_node</code>, and <code>joint_state_broadcaster</code>.
+            </p>
+            <ul>
+                <li><code>robot_state_publisher</code> publishes <code>robot_description</code> and TF.</li>
+                <li><code>ros_gz_sim</code> spawns the robot in Gazebo (headless or GUI mode).</li>
+                <li><code>gz_ros2_control</code> exposes <code>/controller_manager</code>.</li>
+                <li><code>joint_command_node</code> publishes to <code>/forward_position_controller/commands</code>.</li>
+                <li><code>joint_state_broadcaster</code> publishes <code>/joint_states</code> for RViz monitoring.</li>
+            </ul>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-urdf-gazebo-model/arch_node_graph.png" alt="Architecture diagram for ROS 2 and Gazebo runtime flow">
+                <p class="media-caption">ROS 2 nodes, topics, and control path architecture.</p>
+            </div>
+        </section>
+
+        <section class="reveal" data-delay="3">
+            <h2>Technical Implementation</h2>
+            <ul>
+                <li>Robot model: <code>src/robot_description_pkg/urdf/two_link_arm.urdf.xacro</code></li>
+                <li>Controller config: <code>src/robot_sim_pkg/config/controllers.yaml</code></li>
+                <li>WSL2-safe launch: <code>src/robot_sim_pkg/launch/gazebo_headless_rviz.launch.py</code></li>
+                <li>Native GUI launch: <code>src/robot_sim_pkg/launch/gazebo_gui.launch.py</code></li>
+                <li>C++ command node: <code>src/robot_sim_pkg/src/joint_command_node.cpp</code></li>
+            </ul>
+            <p>
+                The model uses two revolute joints (<code>joint1</code>, <code>joint2</code>), a fixed base via <code>world_to_base</code>, and a fixed
+                end-effector frame <code>ee_link</code>.
+            </p>
+            <h3>Software Stack</h3>
+            <ul>
+                <li>ROS 2 Jazzy</li>
+                <li>C++ with <code>rclcpp</code></li>
+                <li><code>ros2_control</code>, <code>ros2_controllers</code>, <code>controller_manager</code></li>
+                <li><code>ros_gz_sim</code> + <code>gz_ros2_control</code></li>
+                <li>RViz2 and URDF/Xacro</li>
+            </ul>
+            <h3>Core Engineering Decisions</h3>
+            <ul>
+                <li>Kept command/state behavior in C++ nodes for explicit control logic.</li>
+                <li>Made headless Gazebo + RViz the default for WSL2-safe execution.</li>
+                <li>Split launch files by use-case: RViz-only, headless sim, and native GUI sim.</li>
+                <li>Used <code>forward_command_controller</code> with position interface for a clear command path.</li>
+            </ul>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Key Challenges &amp; Solutions</h2>
+            <ul>
+                <li>Gazebo GUI instability on some WSL2/NVIDIA setups; solved with dedicated headless + RViz mode.</li>
+                <li>Controller startup failures from plugin/config path inconsistencies; solved by wiring installed package paths consistently.</li>
+                <li>Robot toppling during early setup; solved by anchoring base with <code>world</code> and fixed <code>world_to_base</code> joint.</li>
+            </ul>
+        </section>
+
+        <section class="reveal" data-delay="4">
+            <h2>Results</h2>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-urdf-gazebo-model/main_results.png" alt="Primary result showing URDF model in RViz">
+                <p class="media-caption">Primary result view of the validated two-link model in RViz.</p>
+            </div>
+            <p>
+                The URDF parses successfully, the kinematic chain is valid (<code>world -&gt; base_link -&gt; link1 -&gt; link2 -&gt; ee_link</code>),
+                controllers load in headless mode, and joint commands at 50 Hz produce observable joint-state updates.
+            </p>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-urdf-gazebo-model/controllers_active_terminal.png" alt="Terminal showing active controllers">
+                <p class="media-caption">Terminal evidence of active controllers in simulation.</p>
+            </div>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-urdf-gazebo-model/topics_check_terminal.png" alt="Terminal topic validation checks">
+                <p class="media-caption">Topic validation checks for command and state interfaces.</p>
+            </div>
+            <h3>Demo</h3>
+            <p>
+                Two operating modes are provided depending on environment and graphics stability.
+            </p>
+            <h3>Demo - WSL2-Friendly Headless Gazebo + RViz</h3>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-urdf-gazebo-model/demo_headless_gazebo_rviz_motion.gif" alt="Headless Gazebo and RViz demo motion">
+                <p class="media-caption">WSL2-safe headless Gazebo plus RViz joint-motion demo.</p>
+            </div>
+            <h3>Demo - Standard Gazebo GUI on Ubuntu</h3>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-urdf-gazebo-model/demo_gazebo_rviz_motion.gif" alt="Standard Gazebo GUI and RViz demo motion on Ubuntu">
+                <p class="media-caption">Standard Gazebo GUI mode on Ubuntu with RViz joint-motion visualization.</p>
+            </div>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>Reproducibility</h2>
+            <p>Install dependencies:</p>
+            <pre><code>sudo apt update
+sudo apt install -y \
+  ros-jazzy-ros-gz-sim \
+  ros-jazzy-gz-ros2-control \
+  ros-jazzy-ros2-control \
+  ros-jazzy-ros2-controllers</code></pre>
+            <p>Build and run WSL2-safe mode:</p>
+            <pre><code>source /opt/ros/jazzy/setup.bash
+colcon build --base-paths src
+source install/setup.bash
+ros2 launch robot_sim_pkg gazebo_headless_rviz.launch.py</code></pre>
+            <p>Run native Gazebo GUI mode:</p>
+            <pre><code>source /opt/ros/jazzy/setup.bash
+colcon build --base-paths src
+source install/setup.bash
+ros2 launch robot_sim_pkg gazebo_gui.launch.py</code></pre>
+            <p>Validation commands:</p>
+            <pre><code>ros2 control list_controllers --controller-manager /controller_manager
+ros2 topic echo /joint_states --once
+ros2 topic echo /forward_position_controller/commands --once
+check_urdf src/robot_description_pkg/urdf/two_link_arm.urdf</code></pre>
+            <p>Key files: <code>README.md</code>, <code>src/robot_description_pkg/urdf/two_link_arm.urdf.xacro</code>, <code>src/robot_sim_pkg/config/controllers.yaml</code>, <code>src/robot_sim_pkg/launch/gazebo_headless_rviz.launch.py</code>, <code>src/robot_sim_pkg/launch/gazebo_gui.launch.py</code>, <code>src/robot_sim_pkg/launch/demo_rviz.launch.py</code>, <code>src/robot_sim_pkg/src/joint_command_node.cpp</code>, <code>src/robot_sim_pkg/src/robot_sim_node.cpp</code>.</p>
+            <div class="card-media project-media">
+                <img src="../assets/images/ros2-urdf-gazebo-model/repro_build_steps.png" alt="Reproducibility command workflow">
+                <p class="media-caption">Setup and launch workflow for reproducible runs.</p>
+            </div>
+            <p><a class="github-btn" href="https://github.com/jloaiza505/ros2-urdf-gazebo-model" target="_blank" rel="noopener">REPO</a></p>
+        </section>
+
+        <section class="reveal" data-delay="5">
+            <h2>What to Improve</h2>
+            <ul>
+                <li>Add automated checks comparing command versus state trajectories over fixed run windows.</li>
+                <li>Add CI checks for launch and controller activation regression detection.</li>
+                <li>Add rosbag-based metrics export for repeatable tracking-error and limit-compliance benchmarks.</li>
+                <li>Add CI smoke checks for both WSL2-safe headless mode and native Gazebo GUI mode.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        &copy; 2026 Jaime Loaiza
+    </footer>
+</div>
+
+<script src="../js/code-blocks.js"></script>
+
+<script src="../js/nav-mobile.js"></script>
+
+</body>
+</html>

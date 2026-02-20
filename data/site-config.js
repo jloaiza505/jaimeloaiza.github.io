@@ -4,8 +4,9 @@ const siteConfig = {
       "passive-exoskeleton-gait-study"
     ],
     "Robotics & Control": [
-      "ros2-diff-drive-control-demo",
-      "ros2-differential-drive-ekf"
+      "ros2-urdf-gazebo-model",
+      "ros2-differential-drive-ekf",
+      "ros2-diff-drive-control-demo"
     ],
     "Applied Engineering / Industrial Tools": []
   },

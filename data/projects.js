@@ -46,5 +46,17 @@
     github: "https://github.com/jloaiza505/ros2-differential-drive-ekf",
     link: "projects/ros2-differential-drive-ekf.html",
     image: ""
+  },
+  {
+    id: "ros2-urdf-gazebo-model",
+    title: "ROS 2 - Two-Link Arm Simulation with URDF Validation, Headless Gazebo, and C++ Joint Control",
+    category: "Robotics & Control",
+    summary: "ROS 2 Jazzy project validating a URDF/Xacro arm model with ros2_control in both headless and GUI Gazebo flows.",
+    stack: ["ROS 2", "C++", "URDF/Xacro", "Gazebo", "ros2_control"],
+    result: "Stable controller activation and reproducible joint-command behavior in WSL2-safe and native simulation modes.",
+    ready_to_publish: true,
+    github: "https://github.com/jloaiza505/ros2-urdf-gazebo-model",
+    link: "projects/ros2-urdf-gazebo-model.html",
+    image: "assets/images/ros2-urdf-gazebo-model/demo_gazebo_rviz_motion.gif"
   }
 ];
